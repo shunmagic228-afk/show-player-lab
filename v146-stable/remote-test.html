@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#101114">
+<title>SHOW PLAYER — iPhoneリモコンテスト</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+<header><span class="brand">SHOW PLAYER<span class="dot"></span></span><span class="pill">iPhone · TEST 0.1</span></header>
+<section class="intro"><p class="eyebrow">REMOTE CHECK</p><h1>リモコンの入力を<br>ひとつずつ、確認。</h1><p class="muted">ELECOMなどのメディアリモコンを接続して、<br>Safariでテストしてください。</p></section>
+<section class="player panel">
+<div class="player-head"><div class="sound-icon">♫</div><div><p class="eyebrow">診断用サウンド</p><h2 id="audioTitle">テスト音を準備しました</h2></div><span id="state" class="pill">停止中</span></div>
+<p class="muted small">小さな「ポン」という音が2秒ごとに鳴ります。<br>iPhoneの音量を低めにしてから始めてください。</p>
+<button id="start" class="primary">テストを開始する <span>▶</span></button>
+<button id="finish" class="secondary" hidden>テストを終了する</button>
+<label class="file-button">自分の音源で試す（任意）<input id="file" type="file" accept="audio/*" hidden></label>
+<audio id="audio" src="test-tone.wav" loop preload="auto" playsinline></audio>
+<p id="notice" role="status" class="small muted">開始後、右 → 左 → 中央の順に押してください。</p>
+</section>
+<section aria-labelledby="resultsTitle">
+<div class="section-heading"><h2 id="resultsTitle">受信結果</h2><span class="muted small">OSメディア入力</span></div>
+<div class="results">
+<article class="result" id="nextCard"><div class="symbol">›</div><h3>右 / 次曲</h3><strong id="nextCount">0</strong><p id="nextStatus">未受信</p></article>
+<article class="result" id="prevCard"><div class="symbol">‹</div><h3>左 / 前曲</h3><strong id="prevCount">0</strong><p id="prevStatus">未受信</p></article>
+<article class="result" id="centerCard"><div class="symbol center">Ⅱ / ▶</div><h3>中央</h3><strong id="centerCount">0</strong><p id="centerStatus">未受信</p></article>
+</div>
+<div class="latest panel" aria-live="polite"><span class="eyebrow">LAST INPUT</span><strong id="latest">入力を待っています</strong><span id="latestTime" class="small muted">リモコンのボタンを押してください</span></div>
+<p class="small muted">数字はOSから届いたコマンドの数です。登録できても実機で届くとは限りません。右・左ではテスト音の曲は変わりません。</p>
+</section>
+<section class="panel volume"><div class="section-heading"><h2>上・下の音量</h2><span class="pill">目視で確認</span></div><p class="muted small">上下を押して、iPhoneの音量表示や音が変わるか確認してください。ブラウザでは音量キーの直接受信を確認できません。</p><fieldset><legend>音量は変わりましたか？</legend><div class="choices"><label><input type="radio" name="volume" value="変わった"><span>変わった</span></label><label><input type="radio" name="volume" value="変わらない"><span>変わらない</span></label><label><input type="radio" name="volume" value="未確認" checked><span>未確認</span></label></div></fieldset></section>
+<section class="panel"><h2>試す順番</h2><ol><li>ほかの音楽・動画を止めて、Safariでこのページを開く。</li><li>「テストを開始する」を押し、音が鳴ることを確認。</li><li>右・左をそれぞれ1回押す。</li><li>中央を押して一時停止、もう1回で再開するか確認。</li><li>右を素早く3回、次に長押しで結果を見る。</li></ol><p class="small muted">画面を開いたまま試してください。受信しない場合は、自分の音源でも試せます。未受信だけではリモコン非対応とは判断しません。</p></section>
+<section><div class="section-heading"><h2>入力ログ</h2><button id="clear" class="text-button">消去</button></div><div id="log" class="log panel" aria-label="入力ログ">まだ入力はありません。</div><button id="share" class="primary">結果を共有する <span>↗</span></button><div class="export-row"><button id="copy" class="secondary">結果をコピー</button><button id="download" class="secondary">ログ保存</button></div><textarea id="summary" aria-label="テスト結果" readonly hidden></textarea><p id="exportNotice" class="small muted" role="status"></p></section>
+<details class="panel"><summary>この試作で確認できること</summary><p class="small muted">SafariのMedia Session APIに、再生・一時停止・前後曲などのコマンドが届くかを調べます。Bluetooth機器名や生のHID入力は取得しません。ロック画面などのOS操作でも同じコマンドが届くため、テスト中はリモコンだけを押してください。</p><p class="small muted">Mac版とは別のブラウザ検証です。iPhoneネイティブ版の対応可否を確定するものではありません。フェード・セットリストは未実装。本番ではまだ使わないでください。初回のページ読込にはネット接続が必要です。</p><p id="support" class="small muted"></p></details>
+<footer>SHOW PLAYER <span>FOR YOUR SHOW.</span><p>このiPhoneでの実機動作は未検証です。<br>ログはこのページ内で保持し、自動送信しません。</p></footer>
+</main>
+<script src="remote-test.js"></script>
+</body></html>
